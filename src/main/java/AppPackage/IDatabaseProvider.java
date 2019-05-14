@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IDatabaseProvider {
     List<DepartmentEntity> GetDepartments();
-    List<CalendarEntity> GetCalendar(Date from, Date to, int departmentId);
+    List<CalendarEntity> GetCalendar(Date from, Date to);
 }

@@ -14,10 +14,9 @@ public class ControllerDep {
         return new DatabaseProvider().GetDepartments();
     }
 
-    @RequestMapping (value = "/days/{id}", method = RequestMethod.GET)
-    public List<CalendarEntity> getDays(@PathVariable("id") String departmentId,
-                                        @RequestParam("from") Date from, @RequestParam("to") Date to){
-        return  new DatabaseProvider().GetCalendar();
+    @RequestMapping (value = "/days", method = RequestMethod.GET)
+    public List<CalendarEntity> getDays(@RequestParam("from") Date from, @RequestParam("to") Date to){
+        return  new DatabaseProvider().GetCalendar(from, to);
     }
 
 }

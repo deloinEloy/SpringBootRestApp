@@ -2,6 +2,7 @@ package AppPackage;
 
 import DatabasePackage.CalendarEntity;
 import DatabasePackage.DepartmentEntity;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -20,16 +21,13 @@ public class DatabaseProvider implements IDatabaseProvider {
         return departments;
     }
 
-    public List<CalendarEntity> GetCalendar(Date from, Date to, int departmentId){
+    public List<CalendarEntity> GetCalendar(Date from, Date to){
         Session session =  HibernateSessionFactory.getSessionFactory().openSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<CalendarEntity> criteria = builder.createQuery(CalendarEntity.class);
-        //criteria.add(Restrictions.between("date", from, to);//add between
-        //criteria.add(Restrictions.eq("departament",departmentId);//add check on id
-        List<CalendarEntity> calendar = criteria.stream().filter(c -> c.getWorker().getDepartmentId() == departmentId && (c.getDate() >= from && c.getDate() <= to));
-        List<CalendarEntity> calendar = session.createQuery(criteria).getResultList();
+        Criteria criteria = session.createCriteria(CalendarEntity.class)
+             .add(Restrictions.between("date", from, to));     //add between
+        List<CalendarEntity> calendar = criteria.list();
         session.close();
 
-        return
+        return calendar;
     }
 }
