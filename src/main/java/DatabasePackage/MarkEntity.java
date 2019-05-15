@@ -7,7 +7,7 @@ import java.util.Objects;
 @Table(name = "Mark", schema = "main", catalog = "")
 public class MarkEntity {
     private Short id;
-    private Object name;
+    private String  name;
 
     @Id
     @Column(name = "ID")
@@ -21,11 +21,11 @@ public class MarkEntity {
 
     @Basic
     @Column(name = "Name")
-    public Object getName() {
+    public String  getName() {
         return name;
     }
 
-    public void setName(Object name) {
+    public void setName(String  name) {
         this.name = name;
     }
 

@@ -1,23 +1,32 @@
 package DatabasePackage;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Calendar", schema = "main", catalog = "")
 public class CalendarEntity {
-    private Object day;
+    private Short id;
+    private Date day;
+
+    @Id
+    @Column(name = "ID")
+    public Short getId() {
+        return id;
+    }
+
+    public void setId(Short id) {
+        this.id = id;
+    }
 
     @Basic
     @Column(name = "Day")
-    public Object getDay() {
+    public Date getDay() {
         return day;
     }
 
-    public void setDay(Object day) {
+    public void setDay(Date day) {
         this.day = day;
     }
 
